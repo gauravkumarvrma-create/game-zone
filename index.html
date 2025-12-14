@@ -1,122 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>GAME ZONE</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f6fa;
+      background: #f4f6f8;
       text-align: center;
       padding: 20px;
     }
     .card {
       background: #ffffff;
-      padding: 20px;
+      max-width: 420px;
       margin: 20px auto;
-      max-width: 400px;
+      padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     button {
       padding: 12px 20px;
       font-size: 16px;
-      margin-top: 10px;
       cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: #1976d2;
+      color: #fff;
     }
-    .hidden {
-      display: none;
+    .premium button {
+      background: #7b1fa2;
+    }
+    small {
+      color: #555;
     }
   </style>
 </head>
 
 <body>
 
-<h1>🎮 GAME ZONE</h1>
-<p>Skill-based entertainment app on Pi Network</p>
+  <h1>🎮 GAME ZONE</h1>
+  <p>Skill-based entertainment app on Pi Network</p>
 
-<!-- FREE ACCESS -->
-<div class="card">
-  <h2>Free Access</h2>
-  <p>Play basic games for entertainment</p>
-  <button onclick="startGame()">Start Free Game</button>
-</div>
+  <!-- FREE ACCESS -->
+  <div class="card">
+    <h2>Free Access</h2>
+    <p>Play basic games for entertainment</p>
+    <button onclick="location.href='free-game.html'">
+      Start Free Game
+    </button>
+  </div>
 
-<!-- QUIZ GAME -->
-<div class="card hidden" id="gameBox">
-  <h3 id="question"></h3>
-  <div id="options"></div>
-  <p id="scoreBox"></p>
-</div>
-
-<!-- PREMIUM -->
-<div class="card">
-  <h2>Premium Access (CRP Utility)</h2>
-  <p>Premium features for eligible CRP community members.</p>
-  <button onclick="alert('Eligibility check will be enabled later')">
-    Check Eligibility
-  </button>
-  <p>No gambling • No betting • No investment</p>
-</div>
-
-<script>
-  const quiz = [
-    {
-      q: "Pi Network is mainly used for?",
-      o: ["Mining gold", "Entertainment & utilities", "Stock trading"],
-      a: 1
-    },
-    {
-      q: "This GAME ZONE app is for?",
-      o: ["Betting", "Entertainment", "Investment"],
-      a: 1
-    },
-    {
-      q: "CRP utility means?",
-      o: ["Gambling", "Token-based access", "Loan system"],
-      a: 1
-    }
-  ];
-
-  let index = 0;
-  let score = 0;
-
-  function startGame() {
-    document.getElementById("gameBox").classList.remove("hidden");
-    loadQuestion();
-  }
-
-  function loadQuestion() {
-    const q = quiz[index];
-    document.getElementById("question").innerText = q.q;
-    const optionsDiv = document.getElementById("options");
-    optionsDiv.innerHTML = "";
-
-    q.o.forEach((opt, i) => {
-      const btn = document.createElement("button");
-      btn.innerText = opt;
-      btn.onclick = () => checkAnswer(i);
-      optionsDiv.appendChild(btn);
-      optionsDiv.appendChild(document.createElement("br"));
-    });
-  }
-
-  function checkAnswer(selected) {
-    if (selected === quiz[index].a) {
-      score++;
-    }
-    index++;
-    if (index < quiz.length) {
-      loadQuestion();
-    } else {
-      document.getElementById("question").innerText = "Game Over 🎉";
-      document.getElementById("options").innerHTML = "";
-      document.getElementById("scoreBox").innerText =
-        "Your Score: " + score + " / " + quiz.length;
-    }
-  }
-</script>
+  <!-- PREMIUM ACCESS -->
+  <div class="card premium">
+    <h2>Premium Access (CRP Utility)</h2>
+    <p>Available for eligible CRP holders</p>
+    <button onclick="location.href='premium.html'">
+      Check Eligibility
+    </button>
+    <br><br>
+    <small>No gambling • No betting • Entertainment only</small>
+  </div>
 
 </body>
 </html>
